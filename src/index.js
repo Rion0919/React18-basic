@@ -7,6 +7,9 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AutoBatch } from './components/AutoBatch'
+import { SuspenseDemo } from './components/SuspenseDemo'
+import { NestedSuspense } from './components/NestedSuspense'
+import { Concurrent } from './components/Concurrent'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,17 +23,20 @@ const queryClient = new QueryClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
             <Route path='/' element={<App />} />
             <Route path='/autobatch' element={<AutoBatch />} />
+            <Route path='/suspense' element={<SuspenseDemo />} />
+            <Route path='/nested_suspense' element={<NestedSuspense />} />
+            <Route path='/concurrent' element={<Concurrent />} />
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function
